@@ -8,6 +8,8 @@ import {
 } from "react-router";
 import type { ReactNode } from "react";
 
+import mainStylesheet from "~/styles/main.css?url";
+
 import type { Route } from "./+types/root";
 
 export const links: Route.LinksFunction = () => [
@@ -24,9 +26,13 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  {
+    rel: "stylesheet",
+    href: mainStylesheet,
+  },
 ];
 
-export function Layout({ children }: { children: ReactNode }) {
+export const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en">
       <head>
@@ -42,13 +48,9 @@ export function Layout({ children }: { children: ReactNode }) {
       </body>
     </html>
   );
-}
+};
 
-export default function App() {
-  return <Outlet />;
-}
-
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export const ErrorBoundary = ({ error }: Route.ErrorBoundaryProps) => {
   let message = "Oops!";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
@@ -75,4 +77,10 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       )}
     </main>
   );
-}
+};
+
+const App = () => {
+  return <Outlet />;
+};
+
+export default App;
