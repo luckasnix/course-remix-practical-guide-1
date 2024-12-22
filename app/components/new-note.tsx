@@ -10,7 +10,7 @@ export const NewNote = () => {
         <textarea id="content" name="content" rows={5} aria-label="content" required />
       </p>
       <div className="form-actions">
-        <button>Add Note</button>
+        <button type="submit">Add Note</button>
       </div>
     </form>
   );
