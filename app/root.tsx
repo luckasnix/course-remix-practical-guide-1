@@ -8,6 +8,7 @@ import {
 } from "react-router";
 import type { ReactNode } from "react";
 
+import { MainNavigation } from "~/components/main-navigation";
 import mainStylesheet from "~/styles/main.css?url";
 
 import type { Route } from "./+types/root";
@@ -42,6 +43,9 @@ export const Layout = ({ children }: { children: ReactNode }) => {
         <Links />
       </head>
       <body>
+        <header>
+          <MainNavigation />
+        </header>
         {children}
         <ScrollRestoration />
         <Scripts />
