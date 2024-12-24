@@ -1,5 +1,6 @@
 {
-  "name": "remix-demo-app",
+  "name": "course-remix-practical-guide-1",
+  "description": "First application from the course 'Remix.js - The Practical Guide' by Maximilian Schwarzmüller.",
   "private": true,
   "type": "module",
   "scripts": {
