@@ -1,7 +1,9 @@
 import { redirect } from "react-router";
 
 import { NewNote } from "~/components/new-note"
+import { NoteList } from "~/components/note-list"
 import newNoteStylesheet from "~/styles/new-note.css?url";
+import noteListStylesheet from "~/styles/note-list.css?url";
 import { type Note, storeNotes, getStoredNotes } from "~/data/notes";
 
 import type { Route } from "./+types/notes";
@@ -16,7 +18,17 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: newNoteStylesheet,
   },
+  {
+    rel: "stylesheet",
+    href: noteListStylesheet,
+  },
 ];
+
+export const loader = async () => {
+  const storedNotes = await getStoredNotes();
+
+  return storedNotes;
+};
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -30,13 +42,14 @@ export const action = async ({ request }: Route.ActionArgs) => {
   const storedNotes = await getStoredNotes();
   storeNotes(storedNotes.concat(note));
 
-  return redirect("/");
+  return redirect("/notes");
 };
 
-const Notes = () => {
+const Notes = ({ loaderData }: Route.ComponentProps) => {
   return (
     <main>
       <NewNote />
+      <NoteList notes={loaderData} />
     </main>
   );
 };
