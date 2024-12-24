@@ -1,7 +1,7 @@
 import { redirect } from "react-router";
 
-import { NewNote } from "~/components/new-note"
-import { NoteList } from "~/components/note-list"
+import { NewNote } from "~/components/new-note";
+import { NoteList } from "~/components/note-list";
 import newNoteStylesheet from "~/styles/new-note.css?url";
 import noteListStylesheet from "~/styles/note-list.css?url";
 import { type Note, storeNotes, getStoredNotes } from "~/data/notes";
