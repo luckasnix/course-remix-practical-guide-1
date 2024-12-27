@@ -4,7 +4,7 @@ import { NewNote } from "~/components/new-note";
 import { NoteList } from "~/components/note-list";
 import newNoteStylesheet from "~/styles/new-note.css?url";
 import noteListStylesheet from "~/styles/note-list.css?url";
-import { type Note, storeNotes, getStoredNotes } from "~/data/notes";
+import { type Note, type NoteData, storeNotes, getStoredNotes } from "~/data/notes";
 
 import type { Route } from "./+types/notes";
 
@@ -32,11 +32,23 @@ export const loader = async () => {
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
+  const title = formData.get("title") as string;
+  const content = formData.get("content") as string;
+  const errors: Partial<Record<keyof NoteData, string>> = {};
+  if (title.length < 5) {
+    errors.title = "O título da nota deve ter ao menos 5 caracteres.";
+  }
+  if (content.length < 10) {
+    errors.content = "O conteúdo da nota deve ter ao menos 10 caracteres.";
+  }
+  if (Object.keys(errors).length > 0) {
+    return errors;
+  }
   const note: Note = {
     id: crypto.randomUUID(),
     data: {
-      title: formData.get("title") as string,
-      content: formData.get("content") as string,
+      title,
+      content,
     },
   };
   const storedNotes = await getStoredNotes();

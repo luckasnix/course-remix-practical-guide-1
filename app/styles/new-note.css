@@ -56,3 +56,7 @@
   color: var(--color-primary-300);
   cursor: not-allowed;
 }
+
+.error-message {
+  color: #d64a40;
+}
