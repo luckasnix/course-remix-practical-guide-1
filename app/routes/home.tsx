@@ -4,7 +4,7 @@ import homeStylesheet from "~/styles/home.css?url";
 
 import type { Route } from "./+types/home";
 
-export const meta = () => [
+export const meta: Route.MetaFunction = () => [
   { title: "Notes App" },
   { name: "description", content: "Save your notes!" },
 ];

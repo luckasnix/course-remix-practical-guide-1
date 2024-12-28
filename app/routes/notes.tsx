@@ -8,7 +8,7 @@ import { type Note, type NoteData, storeNotes, getStoredNotes } from "~/data/not
 
 import type { Route } from "./+types/notes";
 
-export const meta = () => [
+export const meta: Route.MetaFunction = () => [
   { title: "Notes App" },
   { name: "description", content: "All your notes!" },
 ];
