@@ -6,7 +6,7 @@ import type { Route } from "./+types/home";
 
 export const meta: Route.MetaFunction = () => [
   { title: "Notes App" },
-  { name: "description", content: "Save your notes!" },
+  { name: "description", content: "All your notes!" },
 ];
 
 export const links: Route.LinksFunction = () => [
